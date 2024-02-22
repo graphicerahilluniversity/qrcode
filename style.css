@@ -1,126 +1,170 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-header, footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
+html, body {
+  min-height: 100vh; /* Ensure min-height is 100% of the viewport height */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
 }
 
-main {
-    padding: 20px;
+body {
+  align-items: center;
+  justify-content: flex-start; /* Adjust this to align content to the start */
+  padding: 20px;
+  background: #f2f2f2;
+  margin: 0 auto; /* Center the body content horizontally */
+}
+.wrapper{
+  height: 270px;
+  width: 420px;
+  border-radius: 7px;
+  background: #BBC3A4;
+  padding: 30px 30px 35px;
+  transition: height 0.2s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.wrapper.active{
+  height: 525px;
+}
+.wrapper form{
+  height: 210px;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  border-radius: 7px;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  transition: height 0.2s ease;
+}
+.wrapper.active form{
+  height: 225px;
+  pointer-events: none;
+}
+form img{
+  display: none;
+  max-width: 148px;
+}
+.wrapper.active form img{
+  display: block;
+}
+.wrapper.active form .content{
+  display: none;
+}
+form .content i{
+  color: #000000;
+  font-size: 55px;
+}
+form .content p{
+  color: #000000;
+  margin-top: 15px;
+  font-size: 16px;
+}
+.wrapper {
+  max-width: 420px;
+  margin-bottom: 20px;
+  border-radius: 7px;
+  background: #40A2E3;
+  padding: 30px;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.swiper {
+.wrapper .details{
+  opacity: 0;
+  margin-top: 25px;
+  pointer-events: none;
+}
+.wrapper.active .details{
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.5s 0.05s ease;
+}
+.details textarea{
+  width: 100%;
+  height: 128px;
+  outline: none;
+  resize: none;
+  color: #fff;
+  font-size: 18px;
+  background: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  border: 1px solid #fff;
+}
+textarea::-webkit-scrollbar{
+  width: 0px;
+}
+textarea:hover::-webkit-scrollbar{
+  width: 5px;
+}
+textarea:hover::-webkit-scrollbar-track{
+  background: none;
+}
+textarea:hover::-webkit-scrollbar-thumb{
+  background: #fff;
+  border-radius: 8px;
+}
+.details .buttons{
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.buttons button{
+  height: 55px;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  color: #0B85FF;
+  border-radius: 5px;
+  background: #fff;
+  transition: transform 0.3s ease;
+  width: calc(100% / 2 - 10px);
+}
+.buttons button:active{
+  transform: scale(0.95);
+}
+
+@media (max-width: 450px) {
+  .wrapper{
+    padding: 25px;
+    height: 260px;
+  }
+  .wrapper.active{
+    height: 520px;
+  }
+}
+
+footer {
+  width: 100%;
+  background-color: #f2f2f2;
+  color: #333;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto; /* Push footer to the bottom */
+}
+
+footer p {
+  margin: 5px 0; /* Reduce margin for p elements to stack them closer */
+}
+
+footer a {
+  color: #0066cc; /* Example link color */
+}
+
+@media (max-width: 450px) {
+  .wrapper {
     width: 100%;
-    padding-top: 20px;
-    padding-bottom: 50px;
-}
-
-.swiper-slide {
-    background-color: #fff;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}
-
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-/* Navbar Styles */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: #ffffff;
-    padding: 10px 20px;
-}
-
-.navbar .logo {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.navbar .nav-links {
-    list-style: none;
-    display: flex;
-}
-
-.navbar .nav-links li {
-    padding: 0 20px;
-}
-
-.navbar .nav-links a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-}
-
-.navbar .nav-links a:hover {
-    color: #dddddd;
-}
-
-.burger {
-    display: none;
-    cursor: pointer;
-}
-
-.burger div {
-    width: 25px;
-    height: 3px;
-    background-color: #ffffff;
-    margin: 5px;
-    transition: all 0.3s ease;
-}
-
-/* Responsive */
-@media screen and (max-width: 768px) {
-    .navbar .nav-links {
-        position: absolute;
-        right: 0px;
-        height: 92vh;
-        top: 8vh;
-        background-color: #333;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 50%;
-        transform: translateX(100%);
-        transition: transform 0.5s ease-in;
-    }
-    .burger {
-        display: block;
-    }
-}
-
-.nav-active {
-    transform: translateX(0%);
-}
-.toggle .line1 {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.toggle .line2 {
-    opacity: 0;
-}
-
-.toggle .line3 {
-    transform: rotate(45deg) translate(-5px, -6px);
+    padding: 25px 15px; /* Adjust padding for smaller screens */
+  }
 }
