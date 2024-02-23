@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plant Information</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <h2>Select a Plant</h2>
+    <select id="plantSelect">
+        <option value="">Select a plant...</option>
+
+    </select>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const selectElement = document.getElementById('plantSelect');
+
+
+    const excelFileUrl = 'Medicinal plants.xlsx';
+
+    fetch(excelFileUrl)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => {
+        const workbook = XLSX.read(arrayBuffer, {type: "array"});
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        const data = XLSX.utils.sheet_to_json(worksheet);
+
+
+        data.forEach(row => {
+            const option = document.createElement('option');
+            option.value = row.URL;
+            option.textContent = row.PlantsName;
+            selectElement.appendChild(option);
+        });
+
+        // Add an event listener to handle selection
+        selectElement.addEventListener('change', function() {
+            const url = this.value;
+            if (url) {
+                window.open(url, '0'); // Open the selected URL in a new tab/window
+            }
+        });
+    })
+    .catch(error => console.error("Error fetching or processing the Excel file:", error));
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Excel Processing in Browser</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <h2>Excel Data to Console</h2>
+
+    <script>
+
+        const url = 'Medicinal plants.xlsx'; // Direct URL to al plan Excel file
+
+
+        fetch(url)
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => {
+
+                const workbook = XLSX.read(arrayBuffer, {type: "array"});
+
+
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+
+
+                const data = XLSX.utils.sheet_to_json(worksheet);
+
+                document.write(data[0]);
+                console.log(data[0]);
+            })
+            .catch(error => console.error("Error fetching or processing the Excel file:", error));
+    </script>
+</body>
+</html>
