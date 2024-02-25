@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphic Era Hill University <br>GEHU Plant Directory</title>
+    <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body onclick="speakText()">
+    <header>
+        <h1>Graphic Era Hill University <br>GEHU Plant Directory</h1>
+
+    </header>
+    <main>
+        <section>
+            <div class="container">
+        <div class="card">
+            <img src="13.jpg" alt="Image" class="card-img">
+            <div class="card-content">
+                <h2 class="card-title">Curry leaves</h2>
+                <p class="card-text" id="text-to-speak" ><b>Scientific name</b> :Murraya koenigii<br> <b>Family</b>: Rutaceae<br><b>Plant Discription and Health Benefits :</b>The plant is also called sweet neem. Aside from being a versatile culinary herb, curry leaves offer an abundance of health benefits due to their powerful plant compounds.</p>
+            </div>
+        </div><br>
+             <a href="#" class="btn btn-primary" onclick="speakText()">Listen 🔊</a>
+    </div>
+
+
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 GEHU Plant Directory</p>
+    </footer>
+    <script>
+
+function speakText() {
+    // Prevent the default action on body click
+    event.stopPropagation();
+
+    // Get the text from the element with id 'text-to-speak'
+    var text = document.getElementById('text-to-speak').innerText; // Use `innerText` to get the text content
+
+    // Check if speech synthesis is supported
+    if ('speechSynthesis' in window) {
+        // Create a new instance of SpeechSynthesisUtterance with the text
+        var utterance = new SpeechSynthesisUtterance(text);
+
+        // Optionally, set some parameters (these can be adjusted or extended)
+        utterance.rate = 1; // Speed of speech
+        utterance.pitch = 1; // Pitch of speech
+        utterance.volume = 10000; // Volume
+
+        // Speak the text
+        window.speechSynthesis.speak(utterance);
+    } else {
+        // Alert the user if speech synthesis is not supported
+        alert('Sorry, your browser does not support text-to-speech functionality.');
+    }
+}
+</script>
+
+
+
+
+</body>
+</html>
